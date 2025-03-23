@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:healthmonitorapp/start_page.dart';
+import 'dart:io';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({super.key});
@@ -13,15 +15,52 @@ class FrontPage extends StatefulWidget {
 class _FrontPage extends State<FrontPage> {
   final _usersName = TextEditingController();
 
-  void _navigateToStartPage() {
-    if (_usersName.text.isNotEmpty) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => StartPage(userName: _usersName.text),
-        ),
+  void _showDialog() {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+        context: context,
+        builder:
+            (ctx) => CupertinoAlertDialog(
+              title: const Text('Missing Name'),
+              content: const Text('Please enter your name to continue.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('Okay'),
+                ),
+              ],
+            ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder:
+            (ctx) => AlertDialog(
+              title: const Text('Missing Name'),
+              content: const Text('Please enter your name to continue.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('Okay'),
+                ),
+              ],
+            ),
       );
     }
+  }
+
+  void _navigateToStartPage() {
+    if (_usersName.text.trim().isEmpty) {
+      _showDialog();
+      return;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StartPage(userName: _usersName.text),
+      ),
+    );
   }
 
   @override
@@ -30,10 +69,7 @@ class _FrontPage extends State<FrontPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Colors.blue,
-              Colors.lightBlueAccent,
-            ], // Gradient background
+            colors: [Colors.blue, Colors.lightBlueAccent],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -44,9 +80,9 @@ class _FrontPage extends State<FrontPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Spacer(flex: 2), // Pushes content downward initially
+                const Spacer(flex: 2),
                 const Icon(
-                  Icons.health_and_safety, // Health-themed icon
+                  Icons.health_and_safety,
                   size: 80,
                   color: Colors.white,
                 ),
@@ -93,11 +129,10 @@ class _FrontPage extends State<FrontPage> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    // Goes the different page
                     onPressed: _navigateToStartPage,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.yellow, // Vibrant button color
-                      foregroundColor: Colors.blue, // Text color
+                      backgroundColor: Colors.yellow,
+                      foregroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -112,7 +147,7 @@ class _FrontPage extends State<FrontPage> {
                     ),
                   ),
                 ),
-                const Spacer(flex: 3), // Balances the layout
+                const Spacer(flex: 3),
               ],
             ),
           ),

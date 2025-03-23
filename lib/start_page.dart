@@ -1,50 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'dart:io';
+
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key, required this.userName});
 
   final String userName;
-
-  void _showDialog(context) {
-    if (Platform.isIOS) {
-      // for IOS
-      showCupertinoDialog(
-        context: context,
-        builder:
-            (ctx) => CupertinoAlertDialog(
-              title: Text('Invalid Input'),
-              content: Text('Please make sure all information is valid'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                  },
-                  child: const Text('Okay'),
-                ),
-              ],
-            ),
-      );
-    } else {
-      showDialog(
-        context: context,
-        builder:
-            (ctx) => AlertDialog(
-              title: Text('Invalid Input'),
-              content: Text('Please make sure all information is valid'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                  },
-                  child: const Text('Okay'),
-                ),
-              ],
-            ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
