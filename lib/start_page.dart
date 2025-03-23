@@ -23,6 +23,8 @@ class _StartPageState extends State<StartPage> {
           backgroundColor: Colors.green,
         ),
       );
+      // Go to other page (test)
+      
       _concernsController.clear(); // Clear text field after submission
     }
   }
