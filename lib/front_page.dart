@@ -55,6 +55,7 @@ class _FrontPage extends State<FrontPage> {
       return;
     }
 
+    // Go to nng
     Navigator.push(
       context,
       MaterialPageRoute(
