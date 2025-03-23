@@ -25,7 +25,7 @@ class HealthCard extends StatelessWidget {
           text,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
-        //trailing: const Icon(Icons.arrow_forward_ios, color: Colors.grey),
+        trailing: const Icon(Icons.arrow_forward_ios, color: Colors.grey),
       ),
     );
   }

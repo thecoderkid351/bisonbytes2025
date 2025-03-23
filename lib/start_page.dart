@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'healthCard.dart';
+import 'package:healthmonitorapp/end_page.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key, required this.userName});
@@ -24,7 +25,11 @@ class _StartPageState extends State<StartPage> {
         ),
       );
       // Go to other page (test)
-      
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => EndPage()),
+      // );
+
       _concernsController.clear(); // Clear text field after submission
     }
   }
