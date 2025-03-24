@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body: Container(
   decoration: const BoxDecoration(
     gradient: LinearGradient(
@@ -19,6 +20,58 @@ body: Container(
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
+=======
+import 'package:flutter/material.dart';
+import 'healthCard.dart';
+import 'package:healthmonitorapp/end_page.dart';
+
+class StartPage extends StatefulWidget {
+  const StartPage({super.key, required this.userName});
+
+  final String userName;
+
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
+  final TextEditingController _concernsController = TextEditingController();
+
+  void _submitConcerns() {
+    final enteredText = _concernsController.text.trim();
+    if (enteredText.isNotEmpty) {
+      // Display a confirmation message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Your concern has been noted!"),
+          backgroundColor: Colors.green,
+        ),
+      );
+      // Go to other page (test)
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => EndPage()),
+      // );
+
+      _concernsController.clear(); // Clear text field after submission
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Health Tracking"),
+        backgroundColor: Colors.blueAccent,
+        elevation: 4,
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue, Colors.lightBlueAccent],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+>>>>>>> b855dc5a1938e995729725153a7b7a8d1474af3e
           ),
           const SizedBox(height: 20),
           const Text(
