@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:healthmonitorapp/start_page.dart';
-import 'dart:io';
+import 'health_page.dart';  // Import the HealthPage file
 
 class FrontPage extends StatefulWidget {
   const FrontPage({super.key});
@@ -49,17 +48,17 @@ class _FrontPage extends State<FrontPage> {
     }
   }
 
-  void _navigateToStartPage() {
+  void _navigateToHealthPage() {
     if (_usersName.text.trim().isEmpty) {
       _showDialog();
       return;
     }
 
-    // Go to nng
+    // Go to HealthPage
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => StartPage(userName: _usersName.text),
+        builder: (context) => const HealthPage(),
       ),
     );
   }
@@ -130,7 +129,7 @@ class _FrontPage extends State<FrontPage> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: _navigateToStartPage,
+                    onPressed: _navigateToHealthPage,  // Updated to go to HealthPage
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.yellow,
                       foregroundColor: Colors.blue,

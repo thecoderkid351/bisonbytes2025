@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:healthmonitorapp/front_page.dart';
+import 'screens/dashboard_screen.dart';
 
-void main(){
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        body: FrontPage(),
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Health Dashboard',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-    )
-  );
+      home: DashboardScreen(),
+    );
+  }
 }
